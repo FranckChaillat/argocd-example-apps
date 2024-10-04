@@ -24,17 +24,17 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-      http:
-        paths:
-          {{- range .Values.ingress.paths }}
-          - path: {{ .path }}
-            {{- with .pathType }}
-            pathType: {{ . }}
-            {{- end }}
-            backend:
-              service:
-                name: {{ include "helm-guestbook.fullname" $ }}
-                port:
-                  number: {{ $.Values.service.port }}
-          {{- end }}
+      - http:
+         paths:
+           {{- range .Values.ingress.paths }}
+           - path: {{ .path }}
+             {{- with .pathType }}
+             pathType: {{ . }}
+             {{- end }}
+             backend:
+               service:
+                 name: {{ include "helm-guestbook.fullname" $ }}
+                 port:
+                   number: {{ $.Values.service.port }}
+           {{- end }}
 {{- end }}
